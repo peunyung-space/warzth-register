@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>User Registration Dashboard</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f6fa; color: #1a1a2e; padding: 2rem; }
+  h1 { font-size: 20px; font-weight: 500; margin-bottom: 1.5rem; color: #1a1a2e; }
+  .section-label { font-size: 11px; letter-spacing: 0.08em; color: #888; text-transform: uppercase; margin: 0 0 12px; }
+  .kpi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 2rem; }
+  .kpi { background: #fff; border-radius: 10px; padding: 1.25rem; border: 1px solid #ececec; }
+  .kpi-val { font-size: 28px; font-weight: 500; line-height: 1.1; margin-bottom: 4px; }
+  .kpi-sub { font-size: 13px; color: #888; }
+  .kpi-pct { font-size: 13px; font-weight: 500; margin-top: 4px; }
+  .card { background: #fff; border-radius: 12px; padding: 1.25rem; margin-bottom: 2rem; border: 1px solid #ececec; }
+  .legend { display: flex; gap: 20px; margin-bottom: 12px; font-size: 13px; color: #666; }
+  .legend span { display: flex; align-items: center; gap: 6px; }
+  .leg-line { width: 20px; height: 3px; border-radius: 2px; display: inline-block; }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  thead th { background: #f8f8f8; font-weight: 500; font-size: 12px; color: #888; padding: 10px 14px; text-align: left; border-bottom: 1px solid #ececec; }
+  tbody td { padding: 10px 14px; border-bottom: 1px solid #f0f0f0; }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr:hover td { background: #fafafa; }
+  .num { text-align: right; font-variant-numeric: tabular-nums; }
+  .date-col { color: #888; font-size: 13px; }
+</style>
+</head>
+<body>
+<h1>User Registration Dashboard</h1>
+
+<p class="section-label">Total registrations</p>
+<div class="kpi-grid">
+  <div class="kpi">
+    <div class="kpi-val">6,670</div>
+    <div class="kpi-sub">Total register</div>
+  </div>
+  <div class="kpi">
+    <div class="kpi-val" style="color:#185FA5;">2,819</div>
+    <div class="kpi-sub">Old users</div>
+    <div class="kpi-pct" style="color:#185FA5;">42% of total</div>
+  </div>
+  <div class="kpi">
+    <div class="kpi-val" style="color:#0F6E56;">3,851</div>
+    <div class="kpi-sub">New users</div>
+    <div class="kpi-pct" style="color:#0F6E56;">58% of total</div>
+  </div>
+</div>
+
+<p class="section-label">Daily trend</p>
+<div class="card">
+  <div class="legend">
+    <span><span class="leg-line" style="background:#185FA5;"></span>Old users</span>
+    <span><span class="leg-line" style="background:#0F6E56; border-top:2px dashed #0F6E56; height:0; background:none;"></span>New users</span>
+  </div>
+  <div style="position:relative;width:100%;height:280px;">
+    <canvas id="lineChart"></canvas>
+  </div>
+</div>
+
+<p class="section-label">Daily breakdown</p>
+<div class="card" style="padding:0;overflow:hidden;">
+  <table>
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th class="num">Old users</th>
+        <th class="num">New users</th>
+        <th class="num">Total / day</th>
+      </tr>
+    </thead>
+    <tbody><tr>
+      <td class="date-col">Sun May 31 2026 00:00:00 GMT+0700 (Indochina Time)</td>
+      <td class="num">0</td>
+      <td class="num">0</td>
+      <td class="num">0</td>
+    </tr><tr>
+      <td class="date-col">Sat May 30 2026 00:00:00 GMT+0700 (Indochina Time)</td>
+      <td class="num">0</td>
+      <td class="num">0</td>
+      <td class="num">0</td>
+    </tr><tr>
+      <td class="date-col">Fri May 29 2026 00:00:00 GMT+0700 (Indochina Time)</td>
+      <td class="num">0</td>
+      <td class="num">0</td>
+      <td class="num">0</td>
+    </tr><tr>
+      <td class="date-col">Thu May 28 2026 00:00:00 GMT+0700 (Indochina Time)</td>
+      <td class="num">0</td>
+      <td class="num">0</td>
+      <td class="num">0</td>
+    </tr><tr>
+      <td class="date-col">Wed May 27 2026 00:00:00 GMT+0700 (Indochina Time)</td>
+      <td class="num">0</td>
+      <td class="num">0</td>
+      <td class="num">0</td>
+    </tr><tr>
+      <td class="date-col">Tue May 26 2026 00:00:00 GMT+0700 (Indochina Time)</td>
+      <td class="num">0</td>
+      <td class="num">0</td>
+      <td class="num">0</td>
+    </tr><tr>
+      <td class="date-col">Mon May 25 2026 00:00:00 GMT+0700 (Indochina Time)</td>
+      <td class="num">0</td>
+      <td class="num">0</td>
+      <td class="num">0</td>
+    </tr><tr>
+      <td class="date-col">Sun May 24 2026 00:00:00 GMT+0700 (Indochina Time)</td>
+      <td class="num">0</td>
+      <td class="num">0</td>
+      <td class="num">0</td>
+    </tr><tr>
+      <td class="date-col">Sat May 23 2026 00:00:00 GMT+0700 (Indochina Time)</td>
+      <td class="num">0</td>
+      <td class="num">0</td>
+      <td class="num">0</td>
+    </tr><tr>
+      <td class="date-col">Fri May 22 2026 00:00:00 GMT+0700 (Indochina Time)</td>
+      <td class="num">0</td>
+      <td class="num">0</td>
+      <td class="num">0</td>
+    </tr><tr>
+      <td class="date-col">Thu May 21 2026 00:00:00 GMT+0700 (Indochina Time)</td>
+      <td class="num">0</td>
+      <td class="num">0</td>
+      <td class="num">0</td>
+    </tr><tr>
+      <td class="date-col">Wed May 20 2026 00:00:00 GMT+0700 (Indochina Time)</td>
+      <td class="num">0</td>
+      <td class="num">0</td>
+      <td class="num">0</td>
+    </tr><tr>
+      <td class="date-col">Tue May 19 2026 00:00:00 GMT+0700 (Indochina Time)</td>
+      <td class="num">0</td>
+      <td class="num">0</td>
+      <td class="num">0</td>
+    </tr><tr>
+      <td class="date-col">Mon May 18 2026 00:00:00 GMT+0700 (Indochina Time)</td>
+      <td class="num">15</td>
+      <td class="num">98</td>
+      <td class="num">113</td>
+    </tr><tr>
+      <td class="date-col">Sun May 17 2026 00:00:00 GMT+0700 (Indochina Time)</td>
+      <td class="num">86</td>
+      <td class="num">366</td>
+      <td class="num">452</td>
+    </tr><tr>
+      <td class="date-col">Sat May 16 2026 00:00:00 GMT+0700 (Indochina Time)</td>
+      <td class="num">86</td>
+      <td class="num">315</td>
+      <td class="num">401</td>
+    </tr><tr>
+      <td class="date-col">Fri May 15 2026 00:00:00 GMT+0700 (Indochina Time)</td>
+      <td class="num">91</td>
+      <td class="num">400</td>
+      <td class="num">491</td>
+    </tr><tr>
+      <td class="date-col">Thu May 14 2026 00:00:00 GMT+0700 (Indochina Time)</td>
+      <td class="num">121</td>
+      <td class="num">310</td>
+      <td class="num">431</td>
+    </tr><tr>
+      <td class="date-col">Wed May 13 2026 00:00:00 GMT+0700 (Indochina Time)</td>
+      <td class="num">150</td>
+      <td class="num">479</td>
+      <td class="num">629</td>
+    </tr><tr>
+      <td class="date-col">Tue May 12 2026 00:00:00 GMT+0700 (Indochina Time)</td>
+      <td class="num">255</td>
+      <td class="num">493</td>
+      <td class="num">748</td>
+    </tr><tr>
+      <td class="date-col">Mon May 11 2026 00:00:00 GMT+0700 (Indochina Time)</td>
+      <td class="num">285</td>
+      <td class="num">369</td>
+      <td class="num">654</td>
+    </tr><tr>
+      <td class="date-col">Sun May 10 2026 00:00:00 GMT+0700 (Indochina Time)</td>
+      <td class="num">223</td>
+      <td class="num">284</td>
+      <td class="num">507</td>
+    </tr><tr>
+      <td class="date-col">Sat May 09 2026 00:00:00 GMT+0700 (Indochina Time)</td>
+      <td class="num">262</td>
+      <td class="num">255</td>
+      <td class="num">517</td>
+    </tr><tr>
+      <td class="date-col">Fri May 08 2026 00:00:00 GMT+0700 (Indochina Time)</td>
+      <td class="num">437</td>
+      <td class="num">218</td>
+      <td class="num">655</td>
+    </tr><tr>
+      <td class="date-col">Thu May 07 2026 00:00:00 GMT+0700 (Indochina Time)</td>
+      <td class="num">797</td>
+      <td class="num">264</td>
+      <td class="num">1,061</td>
+    </tr><tr>
+      <td class="date-col">Wed May 06 2026 00:00:00 GMT+0700 (Indochina Time)</td>
+      <td class="num">5</td>
+      <td class="num">0</td>
+      <td class="num">5</td>
+    </tr><tr>
+      <td class="date-col">Tue May 05 2026 00:00:00 GMT+0700 (Indochina Time)</td>
+      <td class="num">6</td>
+      <td class="num">0</td>
+      <td class="num">6</td>
+    </tr></tbody>
+  </table>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+new Chart(document.getElementById('lineChart'), {
+  type: 'line',
+  data: {
+    labels: ["Sun May 31 2026 00:00:00 GMT+0700 (Indochina Time)","Sat May 30 2026 00:00:00 GMT+0700 (Indochina Time)","Fri May 29 2026 00:00:00 GMT+0700 (Indochina Time)","Thu May 28 2026 00:00:00 GMT+0700 (Indochina Time)","Wed May 27 2026 00:00:00 GMT+0700 (Indochina Time)","Tue May 26 2026 00:00:00 GMT+0700 (Indochina Time)","Mon May 25 2026 00:00:00 GMT+0700 (Indochina Time)","Sun May 24 2026 00:00:00 GMT+0700 (Indochina Time)","Sat May 23 2026 00:00:00 GMT+0700 (Indochina Time)","Fri May 22 2026 00:00:00 GMT+0700 (Indochina Time)","Thu May 21 2026 00:00:00 GMT+0700 (Indochina Time)","Wed May 20 2026 00:00:00 GMT+0700 (Indochina Time)","Tue May 19 2026 00:00:00 GMT+0700 (Indochina Time)","Mon May 18 2026 00:00:00 GMT+0700 (Indochina Time)","Sun May 17 2026 00:00:00 GMT+0700 (Indochina Time)","Sat May 16 2026 00:00:00 GMT+0700 (Indochina Time)","Fri May 15 2026 00:00:00 GMT+0700 (Indochina Time)","Thu May 14 2026 00:00:00 GMT+0700 (Indochina Time)","Wed May 13 2026 00:00:00 GMT+0700 (Indochina Time)","Tue May 12 2026 00:00:00 GMT+0700 (Indochina Time)","Mon May 11 2026 00:00:00 GMT+0700 (Indochina Time)","Sun May 10 2026 00:00:00 GMT+0700 (Indochina Time)","Sat May 09 2026 00:00:00 GMT+0700 (Indochina Time)","Fri May 08 2026 00:00:00 GMT+0700 (Indochina Time)","Thu May 07 2026 00:00:00 GMT+0700 (Indochina Time)","Wed May 06 2026 00:00:00 GMT+0700 (Indochina Time)","Tue May 05 2026 00:00:00 GMT+0700 (Indochina Time)"],
+    datasets: [
+      { label: 'Old users', data: [0,0,0,0,0,0,0,0,0,0,0,0,0,15,86,86,91,121,150,255,285,223,262,437,797,5,6], borderColor: '#185FA5', borderWidth: 2, pointRadius: 4, fill: false, tension: 0.3 },
+      { label: 'New users', data: [0,0,0,0,0,0,0,0,0,0,0,0,0,98,366,315,400,310,479,493,369,284,255,218,264,0,0], borderColor: '#0F6E56', borderWidth: 2, borderDash: [6,4], pointRadius: 4, fill: false, tension: 0.3 }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display: false } },
+    scales: {
+      x: { grid: { color: 'rgba(0,0,0,0.04)' } },
+      y: { grid: { color: 'rgba(0,0,0,0.04)' }, ticks: { callback: v => v.toLocaleString() } }
+    }
+  }
+});
+</script>
+</body>
+</html>
